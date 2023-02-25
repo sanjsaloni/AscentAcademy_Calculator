@@ -1,0 +1,161 @@
+.container {
+    background: white; 
+    border-radius: 12px;
+    display: block;
+    align-content: center;
+}
+
+.calculator {
+    background-color: white;
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 100%;
+    height: auto;
+
+}
+
+body {
+    background: linear-gradient(42deg, #a1d2df, #d2b4dc);
+    display: flex;
+    margin: 60px;
+}
+
+.button {
+    display: grid;
+    gap: 30px 30px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    padding: 20px;
+
+}
+
+button {
+    font-size: 20px;
+    padding: 10px 30px;
+    background: rgba(211, 101, 242, 0.773);
+    border: 3px solid white;
+    border-radius: 10%;
+
+}
+
+button:hover {
+    background-color: aliceblue;
+    border: 3px solid blueviolet;
+}
+
+.entry {
+    float: right;
+    width: 100%;
+    height: 10vh;
+    border: 0px;
+    font-size: 30px;
+    text-align: right;
+    background-color: #a1d2df;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.display {
+    text-align: right;
+    width: 100%;
+    height: 10vh;
+    border: 0px;
+    margin: 10px 0px;
+    color: seagreen;
+    font-size: 30px;
+    font-weight: 30px;
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+p:hover {
+    cursor: pointer;
+}
+
+.left {
+    background: rgba(181, 214, 181, 0.858);
+    border-radius: 30vh;
+    padding: 20px 30px;
+}
+
+.left:hover {
+    border: 3px solid green;
+    background-color: yellowgreen;
+}
+
+.equal {
+    background-color: rgb(252, 108, 158);
+}
+
+.equal:hover {
+    border: 3px solid red;
+    background-color: yellow;
+}
+
+
+@media screen and (min-width:500px),
+(max-height:1000px) {
+    .container {
+        width: fit-content;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .button {
+        display: grid;
+        gap: 10px 05px;
+        justify-content: center;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
+        padding: 10px 5px;
+
+    }
+
+    button {
+        font-size: 20px;
+        font-weight: 60px;
+        padding: 5px 15px;
+    }
+
+    .left {
+        padding: 20px;
+    }
+
+
+}
+
+@media screen and (max-width:100px),
+(max-width:300px) {
+    .button {
+        display: grid;
+        gap: 10px 10px;
+        justify-content: center;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
+        padding: 20px auto;
+
+    }
+
+    button {
+        font-size: 15px;
+        padding: 05px 10px;
+        background: rgba(211, 101, 242, 0.773);
+        border: 3px solid white;
+        border-radius: 10%;
+
+    }
+
+    .left {
+        background: rgba(181, 214, 181, 0.858);
+        border-radius: 30vh;
+        padding: 15px;
+    }
+
+    .display {
+        font-size: 22px;
+    }
+
+}

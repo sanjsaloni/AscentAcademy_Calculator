@@ -1,0 +1,146 @@
+class Calculator {
+    constructor(displayText, entryText) {
+        this.entryText = entryText
+        this.displayText = displayText
+        this.clear()
+
+    }
+    clear() {
+        this.entry = ''
+        this.display = ''
+        this.operation = undefined
+    }
+    delete() {
+        this.entry = this.entry.toString().slice(0, -1)
+    }
+    appendNumber(number) {
+        if (number === '.' && this.entry.includes('.'))
+            return
+        this.entry = this.entry.toString() + number.toString()
+    }
+    chooseOperation(operation) {
+        if (this.entry === '') return
+        if (this.display !== '') {
+            this.compute()
+        }
+        this.operation = operation
+        this.display = this.entry
+        this.entry = ''
+
+    }
+    percentage(operation) {
+        if (this.entry === '') return
+        if (this.display !== '') {
+            this.compute()
+
+        }
+    }
+    compute() {
+        let computation
+        const prev = parseFloat(this.display)
+        const current = parseFloat(this.entry)
+        if (isNaN(prev) || isNaN(current)) return
+        switch (this.operation) {
+            case '+':
+                computation = prev + current
+                break
+            case '-':
+                computation = prev - current
+                break
+            case '÷':
+                computation = prev / current
+                break
+            case 'x':
+                computation = prev * current
+                break
+            case '%':
+                computation = (current / 100)
+                current = computation
+                break
+            default:
+                return
+
+        }
+        this.entry = computation
+        this.operation = undefined
+        this.display = ''
+
+    }
+
+
+    getDisplay(number) {
+        const StringNumber = number.toString()
+        const integerNumber = parseFloat(StringNumber.split('.')[0])
+        const decimalNumber = (StringNumber.split('.')[1])
+        let intDisplay
+        if (isNaN(integerNumber)) {
+            intDisplay = ''
+        }
+        else {
+            intDisplay = integerNumber.toLocaleString('en-IN', {
+                maximumFractionDigits: 0
+            })
+        }
+        if (decimalNumber != null) {
+            return `${intDisplay}.${decimalNumber}`
+        }
+        else {
+            return intDisplay
+        }
+    }
+    updateDisplay() {
+        this.entryText.innerText = this.getDisplay(this.entry)
+        if (this.operation != null) {
+            this.displayText.innerText = `${this.getDisplay(this.display)} ${this.operation}`
+        }
+        else {
+            this.displayText.innerText = ''
+        }
+
+    }
+}
+const numberButtons = document.querySelectorAll('[data-number]')
+const operations = document.querySelectorAll('[data-operation]')
+const percentage = document.querySelectorAll('[data-percent]')
+const equals = document.querySelector('[data-equals]')
+const del = document.querySelector('[data-delete]')
+const clear = document.querySelector('[data-clear]')
+const braces = document.querySelector('[data-bracket]')
+const entryText = document.querySelector('[data-entry]')
+const displayText = document.querySelector('[data-display]')
+
+const calculator = new Calculator(displayText, entryText)
+
+braces.addEventListener('click', () => {
+    calculator.bracket()
+    calculator.updateDisplay()
+})
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.appendNumber(button.innerText)
+        calculator.updateDisplay()
+    })
+})
+
+operations.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.innerText)
+        calculator.updateDisplay()
+    })
+})
+
+equals.addEventListener('click', () => {
+    calculator.compute()
+    calculator.updateDisplay()
+
+})
+
+clear.addEventListener('click', () => {
+    calculator.clear()
+    calculator.updateDisplay()
+})
+del.addEventListener('click', () => {
+    calculator.delete()
+    calculator.updateDisplay()
+})
