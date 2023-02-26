@@ -38,6 +38,16 @@
         }
         this.entry=x
     }
+
+    root(){
+        let x
+        const current=parseFloat(this.entry)
+        if (this.entry === '') return
+        if (this.entry !== '') {
+            x=Math.sqrt(current)
+        }
+        this.entry=x
+    }
     compute() {
         let computation
         const prev = parseFloat(this.display)
@@ -66,6 +76,7 @@
 
     }
 
+    
 
     getDisplay(number) {
         const StringNumber = number.toString()
@@ -105,16 +116,11 @@ const power = document.querySelector('[data-power]')
 const equals = document.querySelector('[data-equals]')
 const del = document.querySelector('[data-delete]')
 const clear = document.querySelector('[data-clear]')
-const braces = document.querySelector('[data-bracket]')
+const root = document.querySelector('[data-root]')
 const entryText = document.querySelector('[data-entry]')
 const displayText = document.querySelector('[data-display]')
 
 const calculator = new Calculator(displayText, entryText)
-
-braces.addEventListener('click', () => {
-    calculator.bracket()
-    calculator.updateDisplay()
-})
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -129,6 +135,10 @@ power.addEventListener('click', ()=>{
     
 })
 
+root.addEventListener('click',()=>{
+    let x=calculator.root()
+    calculator.updateDisplay()
+})
 operations.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
