@@ -7,8 +7,9 @@
     }
     clear() {
         this.entry = ''
-        this.display = ''
+        this.display = 'Basic-Calculator'
         this.operation = undefined
+        
     }
     delete() {
         this.entry = this.entry.toString().slice(0, -1)
@@ -28,12 +29,14 @@
         this.entry = ''
 
     }
-    percentage(operation) {
+    power() {
+        let x
+        const current=parseFloat(this.entry)
         if (this.entry === '') return
-        if (this.display !== '') {
-            this.compute()
-
+        if (this.entry !== '') {
+            x=Math.pow(current,2)
         }
+        this.entry=x
     }
     compute() {
         let computation
@@ -52,10 +55,6 @@
                 break
             case 'x':
                 computation = prev * current
-                break
-            case '%':
-                computation = (current / 100)
-                current = computation
                 break
             default:
                 return
@@ -90,18 +89,19 @@
     }
     updateDisplay() {
         this.entryText.innerText = this.getDisplay(this.entry)
+        
         if (this.operation != null) {
             this.displayText.innerText = `${this.getDisplay(this.display)} ${this.operation}`
         }
         else {
-            this.displayText.innerText = ''
+            this.displayText.innerText = 'Basic-Calculator'
         }
 
     }
 }
 const numberButtons = document.querySelectorAll('[data-number]')
 const operations = document.querySelectorAll('[data-operation]')
-const percentage = document.querySelectorAll('[data-percent]')
+const power = document.querySelector('[data-power]')
 const equals = document.querySelector('[data-equals]')
 const del = document.querySelector('[data-delete]')
 const clear = document.querySelector('[data-clear]')
@@ -121,6 +121,12 @@ numberButtons.forEach(button => {
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
     })
+})
+
+power.addEventListener('click', ()=>{
+    let x=calculator.power()
+    calculator.updateDisplay()
+    
 })
 
 operations.forEach(button => {
