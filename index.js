@@ -1,4 +1,4 @@
-class Calculator {
+ class Calculator {
     constructor(displayText, entryText) {
         this.entryText = entryText
         this.displayText = displayText
