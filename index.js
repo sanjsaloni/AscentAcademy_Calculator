@@ -133,6 +133,7 @@ operations.forEach(button => {
 equals.addEventListener('click', () => {
     calculator.compute()
     calculator.updateDisplay()
+    displayText.innerText='Basic-Calculator'
 
 })
 
